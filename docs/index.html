@@ -2,56 +2,122 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Онлайн наставник Хачапури и вино</title>
-  <!-- Подключение Tailwind CSS через CDN -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3×2 Layout Adaptive</title>
+  <!-- Tailwind CSS (через CDN) -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-    }
-    .btn {
+    /* Фон страницы */
+    .bg-beige {
       background-color: beige;
     }
-    .btn:hover {
-      background-color: burlywood;
+    /* Класс для кнопки с clip-path */
+    .svg-clip-button {
+      width: 200px;       /* Подберите нужный размер */
+      height: 200px;
+      background: black;  /* Цвет кнопки */
+      color: white;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 10px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      /* Форма из SVG */
+      clip-path: path('M108.99 162.5C103.217 172.5 88.7831 172.5 83.0096 162.5L2.46926 22.9999C-3.30424 12.9999 3.91266 0.499981 15.4597 0.499982L176.54 0.499996C188.087 0.499997 195.304 13 189.531 23L108.99 162.5Z');
+    }
+    .svg-clip-button:hover {
+      background: burlywood;
+    }
+    .svg-clip-button-up {
+      width: 200px;
+      height: 170px;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 10px;
+      justify-content: center;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      clip-path: path('M83.0096 7.49997C88.7831 -2.50003 103.217 -2.5 108.99 7.5L189.531 147C195.304 157 188.087 169.5 176.54 169.5H15.4596C3.91259 169.5 -3.30425 157 2.46926 147L83.0096 7.49997Z');
+    }
+    .svg-clip-button-up:hover {
+      background: burlywood;
+    }
+    /* Класс для текста внутри кнопки – сбрасывает возможные трансформации и выравнивает по центру */
+    .triangle-text {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+
+    .triangle-text-up {
+      display: block;
+      text-align: center;
+      margin-bottom: 5px;
+      width: 100%;
+    } 
+
+    /* Пример shift-классов для смещения кнопок */
+    .shift-1 {
+      position: relative;
+      transform: translate(85px);
+    }
+    .shift-2 {
+      position: relative;
+      transform: translate(85px, -13px);
+    }
+    .shift-3 {
+      position: relative;
+      transform: translate(-85px, -13px);
+    }
+    .shift-4 {
+      position: relative;
+      transform: translate(-85px);
+    }
+    .shift-5 {
+      position: relative;
+      transform: translateY(-5px);
+    }
+    .shift-6 {
+      position: relative;
+      transform: translateY(-5px);
     }
   </style>
 </head>
-<body class="bg-black">
-  <!-- Контейнер, занимающий всё пространство -->
-  <div class="flex items-center justify-center w-full h-full p-4">
-    <!-- Внутренний контейнер для контента, не растянутый на всю ширину -->
-    <div class="max-w-md w-full text-center">
-      <!-- Заголовок -->
-      <h1 class="text-3xl font-bold text-white mb-8">
-        Онлайн наставник<br>
-        Хачапури и вино
-      </h1>
-      <!-- Вертикальный список кнопок, выровненный по центру -->
-      <div class="flex flex-col space-y-4 items-center">
-        <a href="#" class="btn w-full text-center py-3 px-6 rounded transition duration-200">
-          Изучить меню
-        </a>
-        <a href="#" class="btn w-full text-center py-3 px-6 rounded transition duration-200">
-          Задать вопрос
-        </a>
-        <a href="#" class="btn w-full text-center py-3 px-6 rounded transition duration-200">
-          Пройти тест
-        </a>
-        <a href="#" class="btn w-full text-center py-3 px-6 rounded transition duration-200">
-          Узнать статистику
-        </a>
-        <a href="#" class="btn w-full text-center py-3 px-6 rounded transition duration-200">
-          Принять заказ
-        </a>
-      </div>
-    </div>
+<body class="bg-beige flex flex-col items-center p-8">
+  <!-- Заголовок сверху -->
+  <h1 class="text-xl font-bold text-center mb-8">
+    Онлайн-наставник<br>"Хачапури и вино"
+  </h1>
+
+  <!-- Сетка 3×2 -->
+  <div class="grid grid-cols-3 grid-rows-2 gap-1 place-items-center border-2 border-solid">
+    <a href="#" class="svg-clip-button-up shift-1">
+      <span class="triangle-text">Изучить меню</span>
+    </a>
+    <a href="#" class="svg-clip-button shift-5">
+      <span class="triangle-text-up">Полезная<br>информация</span>
+    </a>
+    <a href="#" class="svg-clip-button-up shift-4">
+      <span class="triangle-text">Задать вопрос</span>
+    </a>
+    <a href="#" class="svg-clip-button shift-2">
+      <span class="triangle-text-up">Пройти тест</span>
+    </a>
+    <a href="#" class="svg-clip-button-up shift-6">
+      <span class="triangle-text">Узнать<br>статистику</span>
+    </a>
+    <a href="#" class="svg-clip-button shift-3">
+      <span class="triangle-text-up">Принять заказ</span>
+    </a>
   </div>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>
-
 
 
