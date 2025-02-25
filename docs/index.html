@@ -13,9 +13,9 @@
     }
     /* Класс для кнопки с clip-path */
     .svg-clip-button {
-      width: 200px;       /* Подберите нужный размер */
+      width: 200px;       /* Стандартный размер */
       height: 200px;
-      background: black;  /* Цвет кнопки */
+      background: black;
       color: white;
       display: flex;
       align-items: flex-start;
@@ -25,7 +25,6 @@
       border: none;
       cursor: pointer;
       transition: background 0.3s;
-      /* Форма из SVG */
       clip-path: path('M108.99 162.5C103.217 172.5 88.7831 172.5 83.0096 162.5L2.46926 22.9999C-3.30424 12.9999 3.91266 0.499981 15.4597 0.499982L176.54 0.499996C188.087 0.499997 195.304 13 189.531 23L108.99 162.5Z');
     }
     .svg-clip-button:hover {
@@ -38,8 +37,8 @@
       color: white;
       display: flex;
       align-items: flex-end;
-      padding-bottom: 10px;
       justify-content: center;
+      padding-bottom: 10px;
       font-size: 14px;
       border: none;
       cursor: pointer;
@@ -49,19 +48,13 @@
     .svg-clip-button-up:hover {
       background: burlywood;
     }
-    /* Класс для текста внутри кнопки – сбрасывает возможные трансформации и выравнивает по центру */
-    .triangle-text {
-      display: block;
-      text-align: center;
-      width: 100%;
-    }
-
+    /* Сброс выравнивания для текста внутри кнопок */
+    .triangle-text,
     .triangle-text-up {
       display: block;
       text-align: center;
       width: 100%;
-    } 
-
+    }
     /* Пример shift-классов для смещения кнопок */
     .shift-1 {
       position: relative;
@@ -87,15 +80,44 @@
       position: relative;
       transform: translateY(-5px);
     }
+    
+    /* Адаптивные стили для мобильных устройств */
+    @media screen and (max-width: 600px) {
+      .svg-clip-button {
+        width: 120px;
+        height: 120px;
+        padding-top: 8px;
+        font-size: 12px;
+      }
+      .svg-clip-button-up {
+        width: 120px;
+        height: 100px;
+        padding-bottom: 8px;
+        font-size: 12px;
+      }
+      /* Если смещения (shift) портят внешний вид на маленьком экране – можно их отключить или скорректировать */
+      .shift-1,
+      .shift-2,
+      .shift-3,
+      .shift-4,
+      .shift-5,
+      .shift-6 {
+        transform: none;
+      }
+      /* Опционально: изменяем сетку на 2 колонки для удобства (если 3 колонки кажутся слишком сжатыми) */
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
-<body class="bg-beige flex flex-col items-center p-8">
+<body class="bg-beige flex flex-col items-center p-4">
   <!-- Заголовок сверху -->
-  <h1 class="text-xl font-bold text-center mb-8">
+  <h1 class="text-xl font-bold text-center mb-4">
     Онлайн-наставник<br>"Хачапури и вино"
   </h1>
 
-  <!-- Сетка 3×2 -->
+  <!-- Сетка 3×2 (на мобильном — опционально 2 колонки) -->
   <div class="grid grid-cols-3 grid-rows-2 gap-1 place-items-center border-2 border-solid">
     <a href="#" class="svg-clip-button-up shift-1">
       <span class="triangle-text">Изучить меню</span>
